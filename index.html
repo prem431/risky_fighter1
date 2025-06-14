@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Risky Fighter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-text-primary: #111827;
+      --color-text-secondary: #6b7280;
+      --color-card-bg: #ffffff;
+      --color-shadow-light: rgba(0, 0, 0, 0.05);
+      --color-btn-bg: #111827;
+      --color-btn-bg-hover: #374151;
+      --radius: 0.75rem;
+      --max-width: 1200px;
+      --transition-speed: 0.3s;
+      --font-family: 'Poppins', sans-serif;
+    }
+
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      font-family: var(--font-family);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+      font-size: 18px;
+    }
+
+    a {
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-speed) ease;
+    }
+
+    a:hover,
+    a:focus {
+      color: var(--color-text-primary);
+      outline: none;
+    }
+
+    /* Header and navigation */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: var(--color-bg);
+      box-shadow: 0 1px 8px var(--color-shadow-light);
+      z-index: 100;
+    }
+
+    nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--color-text-primary);
+      user-select: none;
+      letter-spacing: -0.03em;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    ul li a {
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.15rem;
+      user-select: none;
+    }
+
+    ul li a:hover,
+    ul li a:focus {
+      border-color: var(--color-text-primary);
+      outline: none;
+    }
+
+    /* Marquee */
+    .marquee {
+      background-color: #f3f4f6;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      font-family: var(--font-family);
+      user-select: none;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee marquee {
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    /* Main container */
+    .main {
+      max-width: var(--max-width);
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 15px var(--color-shadow-light);
+    }
+
+    /* Slide styles */
+    .mySlides {
+      display: none;
+      position: relative;
+    }
+
+    .mySlides img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      user-select: none;
+    }
+
+    .text {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 1.25rem;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    /* Navigation arrows */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      padding: 12px;
+      transform: translateY(-50%);
+      color: #fff;
+      font-weight: bold;
+      font-size: 24px;
+      border-radius: var(--radius);
+      background-color: var(--color-btn-bg);
+      user-select: none;
+      transition: background-color var(--transition-speed) ease;
+      line-height: 1;
+      text-align: center;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .prev:hover,
+    .next:hover {
+      background-color: var(--color-btn-bg-hover);
+      outline: none;
+    }
+    .prev {
+      left: 10px;
+    }
+    .next {
+      right: 10px;
+    }
+
+    /* Dots */
+    .dots-container {
+      text-align: center;
+      margin-top: 1rem;
+      user-select: none;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 6px;
+      background-color: var(--color-text-secondary);
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color var(--transition-speed);
+    }
+
+    .dot.active,
+    .dot:hover {
+      background-color: var(--color-text-primary);
+    }
+
+    /* About Section */
+    #about {
+      text-align: center;
+    }
+
+    #about h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 1rem;
+      user-select: none;
+    }
+
+    #about p {
+      color: var(--color-text-secondary);
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      user-select: none;
+    }
+
+    /* Team grid */
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+    }
+
+    .team-member {
+      width: 150px;
+      text-align: center;
+      user-select: none;
+    }
+
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px var(--color-shadow-light);
+      transition: box-shadow var(--transition-speed);
+    }
+
+    .team-member img:hover,
+    .team-member img:focus {
+      box-shadow: 0 6px 22px var(--color-btn-bg);
+      outline: none;
+      cursor: pointer;
+      transform: scale(1.05);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .team-member p {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      user-select: text;
+    }
+
+    /* Contact Section */
+    #contact {
+      background-color: var(--color-card-bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 15px var(--color-shadow-light);
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      user-select: none;
+      /* Make contact text black as requested */
+      color: black;
+    }
+
+    #contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: black;
+    }
+
+    #contact p {
+      color: black;
+      margin-bottom: 1.5rem;
+      font-size: 1.125rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links a img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .social-links a img:hover,
+    .social-links a img:focus {
+      transform: scale(1.2);
+      outline: none;
+    }
+
+    #contact p.phone {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-top: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .team-grid {
+        gap: 1.5rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      ul {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .mySlides img {
+        height: auto;
+      }
+    }
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      ul li a {
+        font-size: 14px;
+      }
+
+      #about h1 {
+        font-size: 2rem;
+      }
+
+      #contact h2 {
+        font-size: 1.75rem;
+      }
+    }
+    body.light-theme {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+body.light-theme a {
+  color: #080808;
+}
+
+body.light-theme #contact {
+  color: black;
+}
+
+body.dark-theme {
+  background-color:#374151;
+  color: #ffffff;
+}
+
+body.dark-theme a {
+  color: #0066ff;
+}
+
+body.dark-theme #contact {
+  color: white;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Primary Navigation" role="navigation">
+      <div class="logo" tabindex="0" aria-label="Risky Fighter Logo">Risky Fighter</div>
+      <ul role="list">
+        <li><a href="#home" tabindex="0">HOME</a></li>
+        <li><a href="#about" tabindex="0">ABOUT</a></li>
+        <li><a href="#contact" tabindex="0">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+  <button id="theme-toggle" aria-label="Toggle light and dark theme" style="margin: 1rem; padding: 0.5rem 1rem; border: none; border-radius: var(--radius); background-color: var(--color-btn-bg); color: white; cursor: pointer;">
+    Toggle Theme
+  </button>
+  
+
+  <div class="marquee" aria-label="Latest news">
+    <marquee behavior="scroll" direction="left" tabindex="0" aria-live="polite" aria-atomic="true">New website launch!</marquee>
+  </div>
+
+  <main class="main" id="home" tabindex="-1" aria-label="Homepage main content">
+    <section class="slideshow-container" aria-label="Event slideshow">
+      <div class="mySlides fade">
+        <img src="IMG_20250223_114410.jpg" alt="Event Image 1 - Belt" width="200px" height="200px"/>
+        <div class="text" aria-live="polite">Event of the Class - Belt 1</div>
+      </div>
+      <div class="mySlides fade">
+        <img src="IMG_20250223_114422.jpg" alt="Event Image 2 - Belt" />
+        <div class="text" aria-live="polite">Event of the Class - Belt 2</div>
+      </div>
+      <div class="mySlides fade">
+        <img src="IMG_20250223_114432.jpg" alt="Event Image 3 - Belt" />
+        <div class="text" aria-live="polite">Event of the Class - Belt 3</div>
+      </div>
+
+      <button class="prev" aria-label="Previous slide" onclick="plusSlides(-1)">&#10094;</button>
+      <button class="next" aria-label="Next slide" onclick="plusSlides(1)">&#10095;</button>
+
+      <div class="dots-container" aria-label="Slide navigation">
+        <span class="dot" onclick="currentSlide(1)" tabindex="0" role="button" aria-label="Slide 1"></span>
+        <span class="dot" onclick="currentSlide(2)" tabindex="0" role="button" aria-label="Slide 2"></span>
+        <span class="dot" onclick="currentSlide(3)" tabindex="0" role="button" aria-label="Slide 3"></span>
+      </div><br>
+    </section>
+      <section id="new-section" aria-label="New Image and Text Section">
+        <div class="image-text-container" style="display: flex; align-items: flex-start; margin-top: 2rem;">
+          <img src="IMG_20250222_135700.jpg" alt="Description of the image" style="width: 200px; height: 200px; border-radius: var(--radius); margin-right: 1rem;">
+          <div class="text-container" style="overflow-y: auto; max-height: 200px; width: 100%;">
+            <p style="font-size: 1.25rem; color: var(--color-text-primary); margin: 0;">AMOL DHOBALE</p>
+            <p style="font-size: 1.125rem; color: var(--color-text-secondary);"></p>
+            <!-- Add more paragraphs as needed for scrolling effect -->
+          </div>
+        </div>
+      </section>
+    
+     
+      
+
+    <section id="about" aria-label="About section">
+      <h1>About</h1>
+      <p>All Coches - Meet our team members:</p>
+      <div class="team-grid">
+        <div class="team-member" tabindex="0">
+          <a href="allt.html"><img src="IMG_20250222_140050.jpg" alt="आकाश ढोबले" /></a>
+          <p>आकाश ढोबले</p>
+        </div>
+        <div class="team-member" tabindex="0">
+          <a href="allt2.html"><img src="IMG_20250222_140656.jpg" alt="रोहित वागमार" /></a>
+          <p>रोहित वागमार</p>
+        </div>
+        <div class="team-member" tabindex="0">
+          <a href="allt3.html"><img src="IMG_20250222_140735.jpg" alt="वैभव शिंदे" /></a>
+          <p>वैभव शिंदे</p>
+        </div>
+        <div class="team-member" tabindex="0">
+          <a href="allt4.html"><img src="IMG_20250222_140619.jpg" alt="नीलेश ढोबले" /></a>
+          <p>नीलेश ढोबले</p>
+        </div>
+        <div class="team-member" tabindex="0">
+          <a href="allt5.html"><img src="IMG_20250222_140714.jpg" alt="श्री भोसले" /></a>
+          <p>श्री भोसले</p>
+        </div>
+        <div class="team-member" tabindex="0">
+          <a href="allt6.html"><img src="IMG_20250222_140636.jpg" alt="प्रथमेश भोसले" /></a>
+          <p>प्रथमेश भोसले</p>
+        </div>
+        <div class="team-member" tabindex="0">
+          <a href="allt7.html"><img src="IMG_20250218_205917.jpg" alt="प्रथमेश बछुटे" /></a>
+          <p>प्रथमेश बछुटे</p>
+        </div>
+        <div class="team-member" tabindex="0">
+          <a href="allt8.html"><img src="IMG_20250222_144426.jpg" alt="सुनील सोनकांबले" /></a>
+          <p>सुनील सोनकांबले</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Contact section">
+      <div class="contact">
+        <h2>Contact</h2>
+        <p>Follow us on social media:</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/riskyfighter_b1/" aria-label="Instagram page 1" target="_blank" rel="noopener noreferrer">
+            <img src="download.jpg" alt="Instagram icon" />
+          </a>
+          <a href="https://www.instagram.com/risky_amol_sir/" aria-label="Instagram page 2" target="_blank" rel="noopener noreferrer">
+            <img src="download.jpg" alt="Instagram icon" />
+          </a>
+          <a href="https://www.instagram.com/riskyfighter_b2_bamanoli/" aria-label="Instagram page 3" target="_blank" rel="noopener noreferrer">
+            <img src="download.jpg" alt="Instagram icon" />
+          </a>
+        </div>
+        <p class="phone">Mobile No: 1234567890</p>
+       
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].classList.add("active");
+    }
+  </script>
+  <script>
+    const themeToggleButton = document.getElementById('theme-toggle');
+    const body = document.body;
+  
+    // Check for saved user preference, if any, and apply it
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-theme');
+    } else {
+      body.classList.add('light-theme');
+    }
+  
+    themeToggleButton.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      body.classList.toggle('light-theme');
+  
+      // Save the user's preference in local storage
+      if (body.classList.contains('dark-theme')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+  
+</body>
+</html>
+
