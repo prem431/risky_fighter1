@@ -291,7 +291,6 @@
       margin: 0 auto;
       text-align: center;
       user-select: none;
-      /* Make contact text black as requested */
       color: black;
     }
 
@@ -336,6 +335,15 @@
       margin-top: 0;
     }
 
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--color-bg);
+      color: var(--color-text-secondary);
+      margin-top: 2rem;
+    }
+
     /* Responsive Design */
     @media (max-width: 900px) {
       .team-grid {
@@ -373,32 +381,6 @@
         font-size: 1.75rem;
       }
     }
-    body.light-theme {
-  background-color: #ffffff;
-  color: #111827;
-}
-
-body.light-theme a {
-  color: #080808;
-}
-
-body.light-theme #contact {
-  color: black;
-}
-
-body.dark-theme {
-  background-color:#374151;
-  color: #ffffff;
-}
-
-body.dark-theme a {
-  color: #0066ff;
-}
-
-body.dark-theme #contact {
-  color: white;
-}
-
   </style>
 </head>
 <body>
@@ -412,10 +394,6 @@ body.dark-theme #contact {
       </ul>
     </nav>
   </header>
-  <button id="theme-toggle" aria-label="Toggle light and dark theme" style="margin: 1rem; padding: 0.5rem 1rem; border: none; border-radius: var(--radius); background-color: var(--color-btn-bg); color: white; cursor: pointer;">
-    Toggle Theme
-  </button>
-  
 
   <div class="marquee" aria-label="Latest news">
     <marquee behavior="scroll" direction="left" tabindex="0" aria-live="polite" aria-atomic="true">New website launch!</marquee>
@@ -424,7 +402,7 @@ body.dark-theme #contact {
   <main class="main" id="home" tabindex="-1" aria-label="Homepage main content">
     <section class="slideshow-container" aria-label="Event slideshow">
       <div class="mySlides fade">
-        <img src="IMG_20250223_114410.jpg" alt="Event Image 1 - Belt" width="200px" height="200px"/>
+        <img src="IMG_20250223_114410.jpg" alt="Event Image 1 - Belt" />
         <div class="text" aria-live="polite">Event of the Class - Belt 1</div>
       </div>
       <div class="mySlides fade">
@@ -445,55 +423,52 @@ body.dark-theme #contact {
         <span class="dot" onclick="currentSlide(3)" tabindex="0" role="button" aria-label="Slide 3"></span>
       </div><br>
     </section>
-      <section id="new-section" aria-label="New Image and Text Section">
-        <div class="image-text-container" style="display: flex; align-items: flex-start; margin-top: 2rem;">
-          <img src="IMG_20250222_135700.jpg" alt="Description of the image" style="width: 200px; height: 200px; border-radius: var(--radius); margin-right: 1rem;">
-          <div class="text-container" style="overflow-y: auto; max-height: 200px; width: 100%;">
-            <p style="font-size: 1.25rem; color: var(--color-text-primary); margin: 0;">AMOL DHOBALE</p>
-            <p style="font-size: 1.125rem; color: var(--color-text-secondary);"></p>
-            <!-- Add more paragraphs as needed for scrolling effect -->
-          </div>
-        </div>
-      </section>
     
-     
-      
+    <section id="new-section" aria-label="New Image and Text Section">
+      <div class="image-text-container" style="display: flex; align-items: flex-start; margin-top: 2rem;">
+        <img src="IMG_20250222_135700.jpg" alt="Description of the image" style="width: 200px; height: 200px; border-radius: var(--radius); margin-right: 1rem;">
+        <div class="text-container" style="overflow-y: auto; max-height: 200px; width: 100%;">
+          <p style="font-size: 1.25rem; color: var(--color-text-primary); margin: 0;">AMOL DHOBALE</p>
+          <p style="font-size: 1.125rem; color: var(--color-text-secondary);"></p>
+        </div>
+      </div>
+    </section>
 
     <section id="about" aria-label="About section">
       <h1>About</h1>
-      <p>All Coches - Meet our team members:</p>
+      <p>All Coaches - Meet our team members:</p>
       <div class="team-grid">
         <div class="team-member" tabindex="0">
-          <a href="allt.html"><img src="IMG_20250222_140050.jpg" alt="आकाश ढोबले" /></a>
-          <p>आकाश ढोबले</p>
+          <a href="allt.html"><img src="IMG_20250222_140050.jpg" alt="Akash Dhobale" /></a>
+          <p>Akash Dhobale</p>
         </div>
         <div class="team-member" tabindex="0">
-          <a href="allt2.html"><img src="IMG_20250222_140656.jpg" alt="रोहित वागमार" /></a>
-          <p>रोहित वागमार</p>
+          <a href="allt2.html"><img src="IMG_20250222_140656.jpg" alt="Rohit Wagmar" /></a>
+          <p>Rohit Wagmar</p>
         </div>
         <div class="team-member" tabindex="0">
-          <a href="allt3.html"><img src="IMG_20250222_140735.jpg" alt="वैभव शिंदे" /></a>
-          <p>वैभव शिंदे</p>
+          <a href="allt3.html"><img src="IMG_20250222_140735.jpg" alt="Vaibhav Shinde" /></a>
+          <p>Vaibhav Shinde</p>
         </div>
         <div class="team-member" tabindex="0">
-          <a href="allt4.html"><img src="IMG_20250222_140619.jpg" alt="नीलेश ढोबले" /></a>
-          <p>नीलेश ढोबले</p>
+          <a href="allt4.html"><img src="IMG_20250222_140619.jpg" alt="Nilesh Dhobale" /></a>
+          <p>Nilesh Dhobale</p>
         </div>
         <div class="team-member" tabindex="0">
-          <a href="allt5.html"><img src="IMG_20250222_140714.jpg" alt="श्री भोसले" /></a>
-          <p>श्री भोसले</p>
+          <a href="allt5.html"><img src="IMG_20250222_140714.jpg" alt="Shri Bhosale" /></a>
+          <p>Shri Bhosale</p>
         </div>
         <div class="team-member" tabindex="0">
-          <a href="allt6.html"><img src="IMG_20250222_140636.jpg" alt="प्रथमेश भोसले" /></a>
-          <p>प्रथमेश भोसले</p>
+          <a href="allt6.html"><img src="IMG_20250222_140636.jpg" alt="Prathamesh Bhosale" /></a>
+          <p>Prathamesh Bhosale</p>
         </div>
         <div class="team-member" tabindex="0">
-          <a href="allt7.html"><img src="IMG_20250218_205917.jpg" alt="प्रथमेश बछुटे" /></a>
-          <p>प्रथमेश बछुटे</p>
+          <a href="allt7.html"><img src="IMG_20250218_205917.jpg" alt="Prathamesh Bachute" /></a>
+          <p>Prathamesh Bachute</p>
         </div>
         <div class="team-member" tabindex="0">
-          <a href="allt8.html"><img src="IMG_20250222_144426.jpg" alt="सुनील सोनकांबले" /></a>
-          <p>सुनील सोनकांबले</p>
+          <a href="allt8.html"><img src="IMG_20250222_144426.jpg" alt="Sunil Sonkambale" /></a>
+          <p>Sunil Sonkambale</p>
         </div>
       </div>
     </section>
@@ -514,11 +489,13 @@ body.dark-theme #contact {
           </a>
         </div>
         <p class="phone">Mobile No: 1234567890</p>
-       
-
       </div>
     </section>
   </main>
+
+  <footer>
+    <p>&copy; 2025 Risky Fighter. All rights reserved.</p>
+  </footer>
 
   <script>
     let slideIndex = 1;
@@ -548,30 +525,5 @@ body.dark-theme #contact {
       dots[slideIndex-1].classList.add("active");
     }
   </script>
-  <script>
-    const themeToggleButton = document.getElementById('theme-toggle');
-    const body = document.body;
-  
-    // Check for saved user preference, if any, and apply it
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark-theme');
-    } else {
-      body.classList.add('light-theme');
-    }
-  
-    themeToggleButton.addEventListener('click', () => {
-      body.classList.toggle('dark-theme');
-      body.classList.toggle('light-theme');
-  
-      // Save the user's preference in local storage
-      if (body.classList.contains('dark-theme')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  </script>
-  
 </body>
 </html>
-
